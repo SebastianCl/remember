@@ -14,14 +14,11 @@ jobs:
       - image: circleci/node:12.16
     steps:
       - checkout
-      - run: echo "Instalar dependencias e iniciar"
+      - run: echo "Instalar dependencias y correr pruebas"
       - run: npm install
-      - run: npm run start
+      - run: npm run unit
 
 workflows:
   test_build:
     jobs:
       - build
-      - test:
-        requires:
-          - build

@@ -1,0 +1,13 @@
+FROM node:16
+
+#CREAR UNA CARPETA DONDE ESTARA EL DIRECTORIO DE TRABAJO
+WORKDIR /app
+
+#COPIAR ARCHIVOS FUENTE
+#Copiar todo (/*) en el directorio actual (/app)
+COPY . .
+
+RUN npm install 
+
+#EJECUTAR UN COMANDO CON SUS PARAMETROS
+CMD ["npm","start"]

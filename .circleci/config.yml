@@ -15,8 +15,8 @@ jobs:
     steps:
       - checkout
       - run: echo "build project"
-      - npm install
-      - npm run start
+      - run: npm install
+      - run: npm run start
 
 workflows:
   test_build:

@@ -1,21 +1,22 @@
 version: 2
-  jobs:
-    test:
-      docker:
-        - image: circleci/node:12.16
-      steps:
-        - checkout
-        - run: echo "Running tests"
-        - run: npm install
-        - run: npm unit
-    build:
-      docker:
-        - image: circleci/node:12.16
-      steps:
-        - checkout
-        - run: echo "build project"
-        - npm install
-        - npm run start
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:12.16
+    steps:
+      - checkout
+      - run: echo "Running tests"
+      - run: npm install
+      - run: npm unit
+  build:
+    docker:
+      - image: circleci/node:12.16
+    steps:
+      - checkout
+      - run: echo "build project"
+      - npm install
+      - npm run start
 
 workflows:
   version: 2

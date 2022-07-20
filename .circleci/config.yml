@@ -1,24 +1,35 @@
 version: 2.1
 
+orbs:
+  aws-ecr: circleci/aws-ecr@8.1.2
+  aws-ecs: circleci/aws-ecs@3.0.0
+  aws-cli: circleci/aws-cli@3.1.1
+
 jobs:
-  test:
-    docker:
-      - image: circleci/node:12.16
+  aws-cli-cred-setup:
+    executor: aws-cli/default
     steps:
-      - checkout
-      - run: echo "Running tests"
-      - run: npm install
-      - run: npm unit
-  build:
-    docker:
-      - image: circleci/node:12.16
-    steps:
-      - checkout
-      - run: echo "Instalar dependencias y correr pruebas"
-      - run: npm install
-      - run: npm run unit
+      - aws-cli/setup:
+          aws-access-key-id: ${AWS_ACCESS_KEY}
+          aws-secret-access-key: ${AWS_ACCESS_SECRET}
+          aws-region: ${AWS_REGION_NAME}
 
 workflows:
-  test_build:
+  aws-cli:
     jobs:
-      - build
+      - aws-cli-cred-setup:
+          context: aws
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          dockerfile: Dockerfile
+          path: ./
+          profile-name: usuario-test
+          repo: ${MY_APP_PREFIX}
+          tag: '${CIRCLE_SHA1}'
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: '${MY_APP_PREFIX}-service'
+          cluster-name: '${MY_APP_PREFIX}-cluster'
+          container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'  

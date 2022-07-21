@@ -14,7 +14,7 @@ workflows:
           dockerfile: Dockerfile
           path: ./
           profile-name: usuario-test
-          region: AWS_REGION_NAME
+          region: us-east-1
           registry-id: ACCOUNT_ID
           repo: remember-repo
           tag: '${CIRCLE_SHA1}'

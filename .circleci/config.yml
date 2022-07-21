@@ -10,22 +10,13 @@ workflows:
     jobs:
       - aws-ecr/build-and-push-image:
           aws-access-key-id: AWS_ACCESS_KEY
-          aws-cli-version: latest
           aws-secret-access-key: AWS_ACCESS_SECRET
-          create-repo: false
           dockerfile: Dockerfile
-          executor: aws-ecr/default
-          new-profile-name: newProfileName
-          no-output-timeout: 20m
           path: ./
           profile-name: usuario-test
-          public-registry: false
-          push-image: true
           region: AWS_REGION_NAME
           registry-id: ACCOUNT_ID
           repo: remember-repo
-          repo-scan-on-push: true
-          skip-when-tags-exist: false
           tag: '${CIRCLE_SHA1}'
 
       - aws-ecs/deploy-service-update:

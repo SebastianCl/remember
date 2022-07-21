@@ -13,20 +13,8 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION_NAME
-  build_test:
-    docker:
-      - image: circleci/node:12.16
-    steps:
-      - checkout
-      - run: echo "Instalar dependencias y correr pruebas"
-      - run: echo ${MY_APP_PREFIX}
-      - run: npm install
-      - run: npm run unit
 
 workflows:
-  run_test:
-    jobs:
-      - build_test
   aws-cli:
     jobs:
       - aws-cli-cred-setup:
@@ -43,5 +31,5 @@ workflows:
           requires:
             - aws-ecr/build-and-push-image
           family: '${MY_APP_PREFIX}-service'
-          cluster: '${MY_APP_PREFIX}-cluster'
+          cluster: 'remember-cluster'
           container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'  

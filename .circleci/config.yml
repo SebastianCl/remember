@@ -18,11 +18,11 @@ workflows:
           region: us-east-1
           registry-id: ACCOUNT_ID
           repo: remember-repo
-          tag: "${CIRCLE_SHA1}"
+          tag: abc
 
       - aws-ecs/deploy-service-update:
           cluster: arn:aws:ecs:us-east-1:983670070948:cluster/remember-repo-cluster
-          container-image-name-updates: "container=remember-repo-container,tag=${CIRCLE_SHA1}"
+          container-image-name-updates: "container=remember-repo-container,tag=abc"
           family: "remember-repo-service"
           requires:
             - aws-ecr/build-and-push-image

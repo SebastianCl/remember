@@ -9,5 +9,7 @@ COPY . .
 
 RUN npm install 
 
+EXPOSE 80
+
 #EJECUTAR UN COMANDO CON SUS PARAMETROS
 CMD ["npm","start"]

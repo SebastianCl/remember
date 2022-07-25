@@ -26,7 +26,7 @@ workflows:
           cluster: arn:aws:ecs:us-east-1:983670070948:cluster/remember-repo-cluster
           container-image-name-updates: "container=remember-repo-container,tag=${CIRCLE_SHA1}"
           family: remember-repo-service
+          force-new-deployment: true
           profile-name: usuario-test
-          task-definition: remember-repo-service:7
           requires:
             - aws-ecr/build-and-push-image

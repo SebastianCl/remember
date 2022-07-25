@@ -24,5 +24,9 @@ workflows:
           cluster: arn:aws:ecs:us-east-1:983670070948:cluster/remember-repo-cluster
           container-image-name-updates: "container=remember-repo-container,tag=${CIRCLE_SHA1}"
           family: remember-repo-service
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          profile-name: usuario-test
+          region: us-east-1
           requires:
             - aws-ecr/build-and-push-image

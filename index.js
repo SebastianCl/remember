@@ -1,14 +1,12 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
 
-app.get('/', function (req, res) {
-    res.send('Hello World')
-})
+app.listen(80);
 
-app.listen(80)
+app.get("/", function (req, res) {
+  res.send("Hola parce");
+});
 
-
-
-app.post('/', function (req, res) {
-    res.send('melo')
-})
+app.post("/", function (req, res) {
+  res.send("melo");
+});

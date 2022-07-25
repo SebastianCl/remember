@@ -27,6 +27,6 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_ACCESS_SECRET
           profile-name: usuario-test
-          region: us-east-1
+          aws-region: AWS_REGION
           requires:
             - aws-ecr/build-and-push-image

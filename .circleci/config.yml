@@ -18,6 +18,10 @@ workflows:
           registry-id: ACCOUNT_ID
           repo: remember-repo
           tag: DJS-integration-remember
+          filters:
+            branches:
+              only:
+                - main
 
       - aws-ecs/deploy-service-update:
           aws-access-key-id: AWS_ACCESS_KEY_ID

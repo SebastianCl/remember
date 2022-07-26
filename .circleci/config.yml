@@ -27,5 +27,6 @@ workflows:
           container-image-name-updates: "container=remember-repo-container,tag=DJS-integration-remember"
           family: remember-repo-service
           profile-name: usuario-test
+          service-name: remember-service
           requires:
             - aws-ecr/build-and-push-image

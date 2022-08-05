@@ -4,7 +4,7 @@ const app = express();
 app.listen(80);
 
 app.get("/", function (req, res) {
-  res.send("Hola parce");
+  res.send("Hola parce!");
 });
 
 app.post("/", function (req, res) {
